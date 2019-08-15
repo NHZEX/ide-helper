@@ -686,6 +686,10 @@ return [
         ],
     ],
     'Swoole\\Coroutine\\Channel' => [
+        'property' => [
+            'capacity' => 'int',
+            'errCode' => 'int',
+        ],
         'method' => [
             '__construct' => [
                 'name' => '__construct',
@@ -914,6 +918,11 @@ return [
         ],
     ],
     'Swoole\\Coroutine\\Http\\Client' => [
+        'property' => [
+            'errCode' => 'int',
+            'body' => 'string',
+            'statusCode' => 'int',
+        ],
         'method' => [
             'set' => [
                 'name' => 'set',
@@ -1190,6 +1199,11 @@ return [
         ],
     ],
     'Swoole\\Coroutine\\Redis' => [
+        'property' => [
+            'errCode' => 'int',
+            'errMsg' => 'string',
+            'connected' => 'bool',
+        ],
         'method' => [
             '__construct' => [
                 'name' => '__construct',
@@ -1424,6 +1438,17 @@ return [
         ],
     ],
     'Swoole\\Coroutine\\MySQL' => [
+        'property' => [
+            'serverInfo' => 'array',
+            'sock' => 'int',
+            'connected' => 'bool',
+            'connect_error' => 'string',
+            'connect_errno' => 'int',
+            'error' => 'string',
+            'errno' => 'int',
+            'affected_rows' => 'int',
+            'insert_id' => 'int',
+        ],
         'method' => [
             'connect' => [
                 'name' => 'connect',
@@ -1629,6 +1654,23 @@ return [
                     'sql' => [
                         'name' => 'sql',
                         'type' => 'string',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'Swoole\\Runtime' => [
+        'method' => [
+            'enableCoroutine' => [
+                'param' => [
+                    'enable' => [
+                        'name' => 'enable',
+                        'type' => 'bool',
+                    ],
+                    'flags' => [
+                        'name' => 'flags',
+                        'type' => 'int',
+                        'defaultValue' => 'SWOOLE_HOOK_ALL',
                     ],
                 ],
             ],
@@ -1954,6 +1996,16 @@ return [
         ],
     ],
     'Swoole\\Http\\Request' => [
+        'property' => [
+            'header' => 'array',
+            'server' => 'array',
+            'get' => 'array',
+            'post' => 'array',
+            'cookie' => 'array',
+            'files' => 'array',
+            'rawContent' => 'string',
+            'getData' => 'string',
+        ],
         'method' => [
             'rawContent' => [
                 'name' => 'rawContent',
@@ -2230,6 +2282,24 @@ return [
                     ],
                 ],
             ],
+        ],
+    ],
+    'Swoole\\WebSocket\\Frame' => [
+        'property' => [
+            'fd' => 'int',
+            'data' => 'string',
+            'opcode' => 'int',
+            'finish' => 'bool',
+        ],
+    ],
+    'Swoole\\WebSocket\\CloseFrame' => [
+        'property' => [
+            'fd' => 'int',
+            'data' => 'string',
+            'opcode' => 'int',
+            'finish' => 'bool',
+            'code' => 'int',
+            'reason' => 'string',
         ],
     ],
     'Swoole\\Redis\\Server' => [
@@ -2561,6 +2631,11 @@ return [
         ],
     ],
     'Swoole\\Client' => [
+        'property' => [
+            'errCode' => 'int',
+            'sock' => 'int',
+            'reuse' => 'bool',
+        ],
         'method' => [
             '__construct' => [
                 'name' => '__construct',
@@ -2718,6 +2793,78 @@ return [
             ],
             'enableSSL' => [
                 'name' => 'enableSSL',
+            ],
+        ],
+    ],
+    'Swoole\\Event' => [
+        'method' => [
+            'add' => [
+                'param' => [
+                    'sock' => [
+                        'name' => 'sock',
+                        'type' => 'mixed',
+                    ],
+                    'read_callback' => [],
+                    'write_callback' => [],
+                    'flags' => [
+                        'name' => 'sock',
+                        'type' => 'int',
+                    ]
+                ],
+                'return' => 'bool',
+            ],
+            'set' => [
+                'param' => [
+                    'fd' => [],
+                    'read_callback' => [],
+                    'write_callback' => [],
+                    'flags' => [
+                        'name' => 'sock',
+                        'type' => 'int',
+                    ]
+                ],
+                'return' => 'bool',
+            ],
+            'isset' => [
+                'param' => [
+                    'fd' => [],
+                    'events' => [
+                        'type' => 'int',
+                    ]
+                ],
+                'return' => 'bool',
+            ],
+            'write' => [
+                'param' => [
+                    'fd' => [],
+                    'data' => [],
+                ],
+                'return' => 'bool',
+            ],
+            'del' => [
+                'param' => [
+                    'sock' => [],
+                ],
+                'return' => 'bool',
+            ],
+            'exit' => [],
+            'defer' => [
+                'param' => [
+                    'callback_function' => [],
+                ],
+            ],
+            'cycle' => [
+                'param' => [
+                    'callback' => [],
+                    'before' => [
+                        'type' => 'int',
+                    ],
+                ],
+                'return' => 'bool',
+            ],
+            'wait' => [
+            ],
+            'dispatch' => [
             ],
         ],
     ],
