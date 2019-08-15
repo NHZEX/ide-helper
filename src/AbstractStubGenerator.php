@@ -74,12 +74,6 @@ abstract class AbstractStubGenerator
 
     protected $config = [];
 
-    protected $typeMapping = [
-        'Process' => '\Swoole\Process',
-        'Coroutine\Iterator' => '\Swoole\Coroutine\Iterator',
-        'Coroutine\Context' => '\Swoole\Coroutine\Iterator',
-    ];
-
     /**
      * AbstractStubGenerator constructor.
      *
@@ -314,9 +308,6 @@ abstract class AbstractStubGenerator
                 }
                 if (!empty($paramConf['type'])) {
                     if ($paramConf['type'] !== 'mixed' && $paramConf['type'] !== 'resource') {
-                        if (isset($this->typeMapping[$paramConf['type']])) {
-                            $paramConf['type'] = $this->typeMapping[$paramConf['type']];
-                        }
                         $parameter->setType($paramConf['type']);
                     }
                 }
@@ -329,9 +320,6 @@ abstract class AbstractStubGenerator
                 }
             }
             if (null === $method->getReturnType() && !empty($methodConf['result'])) {
-                if (isset($this->typeMapping[$methodConf['result']])) {
-                    $methodConf['result'] = $this->typeMapping[$methodConf['result']];
-                }
                 $method->setDocBlock(
                     DocBlockGenerator::fromArray(
                         [

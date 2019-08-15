@@ -8,8 +8,8 @@ return [
             'worker_id' => 'int',
             'worker_pid' => 'int',
             'taskworker' => 'bool',
-            'connections' => '\\Iterator',
-            'ports' => 'Swoole\\Server\\Port',
+            'connections' => '\Swoole\Coroutine\Iterator',
+            'ports' => '\Swoole\Server\Port',
         ],
         'method' => [
             '__construct' => [
@@ -80,7 +80,7 @@ return [
                 'param' => [
                     'process' => [
                         'name' => 'process',
-                        'type' => 'Process',
+                        'type' => '\Swoole\Process',
                     ],
                 ],
             ],
@@ -478,7 +478,7 @@ return [
             ],
             'getContext' => [
                 'name' => 'getContext',
-                'result' => 'Coroutine\\Context',
+                'result' => '\Swoole\Coroutine\Context',
             ],
             'defer' => [
                 'name' => 'defer',
@@ -490,7 +490,7 @@ return [
             ],
             'list' => [
                 'name' => 'list',
-                'result' => 'Coroutine\\Iterator',
+                'result' => '\Swoole\Coroutine\Iterator',
             ],
             'getBackTrace' => [
                 'name' => 'getBackTrace',
@@ -2556,7 +2556,7 @@ return [
                         'name' => '$worker_id',
                     ],
                 ],
-                'result' => 'Process',
+                'result' => '\Swoole\Process',
             ],
         ],
     ],
