@@ -357,5 +357,981 @@
             "codeParam": "",
             "codeReturn": ": bool"
         }
+    ],
+    "Swoole\\Coroutine\\Client": [
+        {
+            "method": "Coroutine\\Client->connect",
+            "code": "bool $swoole_client->connect(string $host, int $port, float $timeout = 0.5, int $sock_flag = 0) ",
+            "codeParam": "string $host, int $port, float $timeout = 0.5, int $sock_flag = 0"
+        },
+        {
+            "method": "Coroutine\\Client->send",
+            "code": "function client->send(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Coroutine\\Client->recv",
+            "code": "function Coroutine\\Client->recv(float $timeout = -1) : string; ",
+            "codeParam": "float $timeout = -1",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\Client->close",
+            "code": "function Coroutine\\Client->close() : bool; ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Client->peek",
+            "code": "function Coroutine\\Client->peek(int $length = 65535) : string; ",
+            "codeParam": "int $length = 65535",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\Client->set",
+            "code": "function Coroutine\\Client->set(array $settings); ",
+            "codeParam": "array $settings"
+        }
+    ],
+    "Swoole\\Coroutine\\Server": [
+        {
+            "method": "Coroutine\\Server->__construct",
+            "code": "function Coroutine\\Server->__construct(string $host, int $port = 0, bool $ssl = false); ",
+            "codeParam": "string $host, int $port = 0, bool $ssl = false"
+        },
+        {
+            "method": "Coroutine\\Server->set",
+            "code": "function Coroutine\\Server->set(array $options); ",
+            "codeParam": "array $options"
+        },
+        {
+            "method": "Coroutine\\Server->handle",
+            "code": "function Coroutine\\Server->handle(callable $fn); ",
+            "codeParam": "callable $fn"
+        },
+        {
+            "method": "Coroutine\\Server->start",
+            "code": "",
+            "codeParam": "",
+            "codeReturn": ""
+        },
+        {
+            "method": "Coroutine\\Server->shutdown",
+            "code": "use Swoole\\Coroutine\\Server; use Swoole\\Coroutine\\Server\\Connection; go(function () {     $server = new Server('0.0.0.0', 9601, false);     $server->handle(function (Connection $conn) use ($server) {         while(true) {             $data = $conn->recv();             $json = json_decode($data, true);             Assert::eq(is_array($json), $json['data'], 'hello');             $conn->send(\"world\\n\");             # 终止服务器             $server->shutdown();         }     });     $server->start(); }); ",
+            "codeParam": "function ("
+        }
+    ],
+    "Swoole\\Coroutine\\Scheduler": [
+        {
+            "method": "Coroutine\\Scheduler->set",
+            "code": "function Coroutine\\Scheduler->set(array $options); ",
+            "codeParam": "array $options"
+        },
+        {
+            "method": "Coroutine\\Scheduler->add",
+            "code": "function Coroutine\\Scheduler->add(callable $fn, ... $args); ",
+            "codeParam": "callable $fn, ... $args"
+        },
+        {
+            "method": "Coroutine\\Scheduler->parallel",
+            "code": "function Coroutine\\Scheduler->parallel(int $n, callable $fn, ... $args); ",
+            "codeParam": "int $n, callable $fn, ... $args"
+        },
+        {
+            "method": "Coroutine\\Scheduler->start",
+            "code": "function Coroutine\\Scheduler->start(); ",
+            "codeParam": ""
+        }
+    ],
+    "Swoole\\Coroutine\\Http\\Client": [
+        {
+            "method": "Coroutine\\Http\\Client->set",
+            "code": "$http->set(['timeout' => 3.0]); ",
+            "codeParam": "['timeout' => 3.0]"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->setMethod",
+            "code": "function Coroutine\\Http\\Client->get->setMethod(string $method); $client->setMethod(\"PUT\"); ",
+            "codeParam": "string $method"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->setHeaders",
+            "code": "function Coroutine\\Http\\Client->setHeaders(array $headers); ",
+            "codeParam": "array $headers"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->setCookies",
+            "code": "function Coroutine\\Http\\Client->setCookies(array $cookies); ",
+            "codeParam": "array $cookies"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->setData",
+            "code": "function Coroutine\\Http\\Client->setData(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->addFile",
+            "code": "function Coroutine\\Http\\Client->addFile(string $path, string $name,     string $mimeType = null, string $filename = null, int $offset = 0, int $length = 0) ",
+            "codeParam": "string $path, string $name,     string $mimeType = null, string $filename = null, int $offset = 0, int $length = 0"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->addData",
+            "code": "function Coroutine\\Http\\Client->addData(string $data, string $name, string $mimeType = null,      string $filename = null) ",
+            "codeParam": "string $data, string $name, string $mimeType = null,      string $filename = null"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->get",
+            "code": "function Swoole\\Coroutine\\Http\\Client->get(string $path); ",
+            "codeParam": "string $path"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->post",
+            "code": "function Swoole\\Coroutine\\Http\\Client->post(string $path, mixed $data); ",
+            "codeParam": "string $path, mixed $data"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->upgrade",
+            "code": "function Coroutine\\Http\\Client->upgrade(string $path); ",
+            "codeParam": "string $path"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->push",
+            "code": "function Coroutine\\Http\\Client->push(mixed $data, int $opcode = WEBSOCKET_OPCODE_TEXT,      bool $finish = true): bool ",
+            "codeParam": "mixed $data, int $opcode = WEBSOCKET_OPCODE_TEXT,      bool $finish = true",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->recv",
+            "code": "function Coroutine\\Http\\Client->recv(float $timeout = -1); ",
+            "codeParam": "float $timeout = -1"
+        },
+        {
+            "method": "Coroutine\\Http\\Client->download",
+            "code": "function Coroutine\\Http\\Client->download(string $path, string $filename,  int $offset = 0); ",
+            "codeParam": "string $path, string $filename,  int $offset = 0"
+        }
+    ],
+    "Swoole\\Coroutine\\Http\\Server": [
+        {
+            "method": "Coroutine\\Http\\Server->handle",
+            "code": "function Coroutine\\Http\\Server->handle(string $pattern, callable $fn); ",
+            "codeParam": "string $pattern, callable $fn"
+        }
+    ],
+    "Swoole\\Coroutine\\Http2\\Client": [
+        {
+            "method": "Coroutine\\Http2\\Client->__construct",
+            "code": "function Coroutine\\Http2\\Client->__construct(string $host, int $port, bool $ssl = false); ",
+            "codeParam": "string $host, int $port, bool $ssl = false"
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->set",
+            "code": "function Coroutine\\Http2\\Client->set(array $options); ",
+            "codeParam": "array $options"
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->connect",
+            "code": "function Coroutine\\Http2\\Client->connect(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->send",
+            "code": "function Coroutine\\Http2\\Client->send(swoole_http2_request $request) : int | false ",
+            "codeParam": "swoole_http2_request $request",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->write",
+            "code": "function Coroutine\\Http2\\Client->write(int $streamId, mixed $data, bool $end = false); ",
+            "codeParam": "int $streamId, mixed $data, bool $end = false"
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->recv",
+            "code": "function Coroutine\\Http2\\Client->recv(float $timeout) : Http2\\Response ",
+            "codeParam": "float $timeout",
+            "codeReturn": ": Http2\\Response"
+        },
+        {
+            "method": "Coroutine\\Http2\\Client->close",
+            "code": "function Coroutine\\Http2\\Client->close(); ",
+            "codeParam": ""
+        }
+    ],
+    "Swoole\\Coroutine\\Redis": [
+        {
+            "method": "Coroutine\\Redis::__construct",
+            "code": "function swoole_redis->__construct(array $options = null); ",
+            "codeParam": "array $options = null"
+        },
+        {
+            "method": "Coroutine\\Redis->setOptions",
+            "code": null
+        },
+        {
+            "method": "Coroutine\\Redis->set",
+            "code": "function Coroutine\\Redis->set(string $key, mixed $value, array | int $option) : bool; ",
+            "codeParam": "string $key, mixed $value, array | int $option",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Redis->request",
+            "code": null
+        }
+    ],
+    "Swoole\\Coroutine\\Socket": [
+        {
+            "method": "Coroutine\\Socket->__construct",
+            "code": "function Coroutine\\Socket->__construct(int $domain, int $type, int $protocol); ",
+            "codeParam": "int $domain, int $type, int $protocol"
+        },
+        {
+            "method": "Coroutine\\Socket->getOption",
+            "code": "function Coroutine\\Socket->getOption(int $level, int $optname) : mixed ",
+            "codeParam": "int $level, int $optname",
+            "codeReturn": ": mixed"
+        },
+        {
+            "method": "Coroutine\\Socket->setOption",
+            "code": "function Coroutine\\Socket->setOption(int $level, int $optname, mixed $optval ) : bool ",
+            "codeParam": "int $level, int $optname, mixed $optval ",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Socket->bind",
+            "code": "function Coroutine\\Socket->bind(string $address, int $port = 0) : bool; ",
+            "codeParam": "string $address, int $port = 0",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Socket->listen",
+            "code": "function Coroutine\\Socket->listen(int $backlog = 0) : bool; ",
+            "codeParam": "int $backlog = 0",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Socket->accept",
+            "code": "function Coroutine\\Socket->accept(double $timeout = -1) : Coroutine\\Socket | false; ",
+            "codeParam": "double $timeout = -1",
+            "codeReturn": ": Coroutine\\Socket"
+        },
+        {
+            "method": "Coroutine\\Socket->connect",
+            "code": "function Coroutine\\Socket->connect(string $host, int port = 0, double $timeout = -1) : bool; ",
+            "codeParam": "string $host, int port = 0, double $timeout = -1",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Socket->send",
+            "code": "function Coroutine\\Socket->send(string $data, double $timeout = -1) : int | false; ",
+            "codeParam": "string $data, double $timeout = -1",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Coroutine\\Socket->sendAll",
+            "code": "function Coroutine\\Socket->sendAll(string $data, double $timeout = -1) : int | false; ",
+            "codeParam": "string $data, double $timeout = -1",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Coroutine\\Socket->recv",
+            "code": "function Coroutine\\Socket->recv(int length = 65535, double $timeout = -1) : string | false; ",
+            "codeParam": "int length = 65535, double $timeout = -1",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\Socket->recvAll",
+            "code": "function Coroutine\\Socket->recvAll(int length = 65535, double $timeout = -1) : string | false; ",
+            "codeParam": "int length = 65535, double $timeout = -1",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\Socket->sendto",
+            "code": "",
+            "codeParam": "",
+            "codeReturn": ""
+        },
+        {
+            "method": "Coroutine\\Socket->recvfrom",
+            "code": "function Coroutine\\Socket->recvfrom(array &$peer, double $timeout = -1) : string | false; ",
+            "codeParam": "array &$peer, double $timeout = -1",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\Socket->getsockname",
+            "code": "function Coroutine\\Socket->getsockname() | array; ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\Socket->getpeername",
+            "code": "function Coroutine\\Socket->getpeername() | array; ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\Socket->close",
+            "code": "function Coroutine\\Socket->close() : bool; ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        }
+    ],
+    "Swoole\\Coroutine\\MySQL": [
+        {
+            "method": "Coroutine\\MySQL->connect",
+            "code": "bool connect(array $serverInfo) ",
+            "codeParam": "array $serverInfo"
+        },
+        {
+            "method": "Coroutine\\MySQL->query",
+            "code": "array|bool query(string $sql, double $timeout = -1) ",
+            "codeParam": "string $sql, double $timeout = -1"
+        },
+        {
+            "method": "Coroutine\\MySQL->prepare",
+            "code": "function Coroutine\\MySQL->prepare(string $sql, float $timeout) : bool ",
+            "codeParam": "string $sql, float $timeout",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\MySQL->escape",
+            "code": "function Coroutine\\MySQL->escape(string $str) : string ",
+            "codeParam": "string $str",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine\\MySQL->begin",
+            "code": "function Coroutine\\MySQL->begin() | bool; ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\MySQL->commit",
+            "code": "function Coroutine\\MySQL->commit() | bool; ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\MySQL->rollback",
+            "code": "function Coroutine\\MySQL->rollback() | bool; ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\MySQL\\Statement->execute",
+            "code": "function Coroutine\\MySQL\\Statement->execute(array $params, float $timeout = -1) : bool ",
+            "codeParam": "array $params, float $timeout = -1",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\MySQL\\Statement->fetch",
+            "code": "function Coroutine\\MySQL->fetch() : ?array ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\MySQL\\Statement->fetchAll",
+            "code": "function Coroutine\\MySQL->fetchAll() : ?array ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\MySQL\\Statement->nextResult",
+            "code": "function Coroutine\\MySQL->nextResult() : ?bool ",
+            "codeParam": ""
+        }
+    ],
+    "Swoole\\Coroutine\\PostgreSQL": [
+        {
+            "method": "Coroutine\\PostgreSQL->connect",
+            "code": "function Coroutine\\PostgreSQL->connect( string $connection_string); ",
+            "codeParam": " string $connection_string"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->query",
+            "code": "function Coroutine\\PostgreSQL->query(resource $connection); ",
+            "codeParam": "resource $connection"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->fetchAll",
+            "code": "function Coroutine\\PostgreSQL->fetchAll(resource $query); ",
+            "codeParam": "resource $query"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->affectedRows",
+            "code": "function Coroutine\\PostgreSQL->affectedRows(resource $queryResult) ",
+            "codeParam": "resource $queryResult"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->numRows",
+            "code": "function Coroutine\\PostgreSQL->numRows(resource $queryResult); ",
+            "codeParam": "resource $queryResult"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->fetchObject",
+            "code": "function Coroutine\\PostgreSQL->fetchObject(resource $queryResult [, int $row); ",
+            "codeParam": "resource $queryResult [, int $row"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->fetchAssoc",
+            "code": "function Coroutine\\PostgreSQL->fetchAssoc( resource $queryResult [, int $row ] ); ",
+            "codeParam": " resource $queryResult [, int $row ] "
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->fetchArray",
+            "code": "function Coroutine\\PostgreSQL->fetchArray( resource $queryResult [, int $row [, int $resulType ]] );  ",
+            "codeParam": " resource $queryResult [, int $row [, int $resulType ]] "
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->fetchRow",
+            "code": "function Coroutine\\PostgreSQL-> fetchRow ( resource $queryResult [, int $row ] ) ",
+            "codeParam": " resource $queryResult [, int $row ] "
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->metaData",
+            "code": "function Coroutine\\PostgreSQL->metaData(String $tableName); ",
+            "codeParam": "String $tableName"
+        },
+        {
+            "method": "Coroutine\\PostgreSQL->prepare",
+            "code": "function Coroutine\\PostgreSQL->prepare( string $name, string $sql); function Coroutine\\PostgreSQL->execute ( string $name, array $bind); ",
+            "codeParam": " string $name, string $sql"
+        }
+    ],
+    "Swoole\\Timer": [
+        {
+            "method": "Timer::tick",
+            "code": "int Swoole\\Timer::tick(int $msec, callable $callback, ...$params); ",
+            "codeParam": "int $msec, callable $callback, ...$params"
+        },
+        {
+            "method": "Timer::after",
+            "code": "int Swoole\\Timer::after(int $after_time_ms, callable $callback_function, ...$params); ",
+            "codeParam": "int $after_time_ms, callable $callback_function, ...$params"
+        },
+        {
+            "method": "Timer::clear",
+            "code": "bool Swoole\\Timer::clear(int $timer_id); ",
+            "codeParam": "int $timer_id"
+        },
+        {
+            "method": "Timer::clearAll",
+            "code": null
+        },
+        {
+            "method": "Timer::info",
+            "code": null
+        },
+        {
+            "method": "Timer::list",
+            "code": null
+        },
+        {
+            "method": "Timer::stats",
+            "code": null
+        }
+    ],
+    "Swoole\\Memory\\Table": [
+        {
+            "method": "Table->__construct",
+            "code": "function Table->__construct(int $size, float $conflict_proportion = 0.2) ",
+            "codeParam": "int $size, float $conflict_proportion = 0.2"
+        },
+        {
+            "method": "Table->column",
+            "code": "bool Table->column(string $name, int $type, int $size = 0); ",
+            "codeParam": "string $name, int $type, int $size = 0"
+        },
+        {
+            "method": "Table->create",
+            "code": "function Table->create() : bool; ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Table->set",
+            "code": "Table->set(string $key, array $value) : bool ",
+            "codeParam": "string $key, array $value",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Table->incr",
+            "code": "function Table->incr(string $key, string $column, mixed $incrby = 1) : int; ",
+            "codeParam": "string $key, string $column, mixed $incrby = 1",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Table->decr",
+            "code": "function Table->decr(string $key, string $column, mixed $decrby = 1) int | float; ",
+            "codeParam": "string $key, string $column, mixed $decrby = 1"
+        },
+        {
+            "method": "Table->get",
+            "code": "array Table->get(string $key, string $field = null); ",
+            "codeParam": "string $key, string $field = null"
+        },
+        {
+            "method": "Table->exist",
+            "code": "bool swoole_table->exist(string $key); ",
+            "codeParam": "string $key"
+        },
+        {
+            "method": "Table->count",
+            "code": "int function Table->count(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Table->del",
+            "code": "bool Table->del(string $key) ",
+            "codeParam": "string $key"
+        }
+    ],
+    "Swoole\\Memory\\Atomic": [
+        {
+            "method": "Atomic->__construct",
+            "code": "function Atomic->__construct(int $init_value = 0) ",
+            "codeParam": "int $init_value = 0"
+        },
+        {
+            "method": "Atomic->add",
+            "code": "function Atomic->add(int $add_value = 1) ",
+            "codeParam": "int $add_value = 1"
+        },
+        {
+            "method": "Atomic->sub",
+            "code": "function Atomic->sub(int $sub_value = 1) ",
+            "codeParam": "int $sub_value = 1"
+        },
+        {
+            "method": "Atomic->get",
+            "code": "function Atomic->get() ",
+            "codeParam": ""
+        },
+        {
+            "method": "Atomic->set",
+            "code": "function Atomic->set(int $value); ",
+            "codeParam": "int $value"
+        },
+        {
+            "method": "Atomic->cmpset",
+            "code": "function Atomic->cmpset(int $cmp_value, int $set_value); ",
+            "codeParam": "int $cmp_value, int $set_value"
+        },
+        {
+            "method": "Atomic->wait",
+            "code": "function Atomic->wait(float $timeout = 1.0) : bool ",
+            "codeParam": "float $timeout = 1.0",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Atomic->wakeup",
+            "code": "function Atomic->wakeup(int $n = 1); ",
+            "codeParam": "int $n = 1"
+        }
+    ],
+    "Swoole\\Memory\\Lock": [
+        {
+            "method": "Lock->__construct",
+            "code": "function Lock->__construct(int $type = SWOOLE_MUTEX, string $lockfile = '') ",
+            "codeParam": "int $type = SWOOLE_MUTEX, string $lockfile = ''"
+        },
+        {
+            "method": "Lock->lock",
+            "code": "function Lock->lock(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Lock->trylock",
+            "code": "function Lock->trylock(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Lock->unlock",
+            "code": "function Lock->unlock(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Lock->lock_read",
+            "code": "function Lock->lock_read() : bool ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Lock->trylock_read",
+            "code": "$lock->trylock_read(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Lock->lockwait",
+            "code": "function Lock->lockwait(float $timeout = 1.0) : bool; ",
+            "codeParam": "float $timeout = 1.0",
+            "codeReturn": ": bool"
+        }
+    ],
+    "Swoole\\Http\\Server": [
+        {
+            "method": "Http\\Server->on",
+            "code": null
+        },
+        {
+            "method": "Http\\Server->start",
+            "code": "void Http\\Server->start() ",
+            "codeParam": ""
+        }
+    ],
+    "Swoole\\Http\\Request": [
+        {
+            "method": "Http\\Request->rawContent",
+            "code": "string Http\\Request->rawContent(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Http\\Request->getData",
+            "code": "function swoole_http_request->getData() : string ",
+            "codeParam": "",
+            "codeReturn": ": string"
+        }
+    ],
+    "Swoole\\Http\\Response": [
+        {
+            "method": "Http\\Response->header",
+            "code": "function Http\\Response->header(string $key, string $value, bool $ucwords = true); ",
+            "codeParam": "string $key, string $value, bool $ucwords = true"
+        },
+        {
+            "method": "Http\\Response->cookie",
+            "code": "function Http\\Response->cookie(string $key, string $value = '', int $expire = 0 , string $path = '/', string $domain  = '', bool $secure = false , bool $httponly = false); ",
+            "codeParam": "string $key, string $value = '', int $expire = 0 , string $path = '/', string $domain  = '', bool $secure = false , bool $httponly = false"
+        },
+        {
+            "method": "Http\\Response->status",
+            "code": "swoole_http_response->status(int $http_status_code); ",
+            "codeParam": "int $http_status_code"
+        },
+        {
+            "method": "Http\\Response->gzip",
+            "code": "swoole_http_response->gzip(int $level = 1); ",
+            "codeParam": "int $level = 1"
+        },
+        {
+            "method": "Http\\Response->redirect",
+            "code": "function Http\\Response->redirect(string $url, int $http_code = 302); ",
+            "codeParam": "string $url, int $http_code = 302"
+        },
+        {
+            "method": "Http\\Response->write",
+            "code": "bool Http\\Response->write(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Http\\Response->sendfile",
+            "code": "function Http\\Response->sendfile(string $filename, int $offset = 0, int $length = 0); ",
+            "codeParam": "string $filename, int $offset = 0, int $length = 0"
+        },
+        {
+            "method": "Http\\Response->end",
+            "code": "function Http\\Response->end(string $html); ",
+            "codeParam": "string $html"
+        },
+        {
+            "method": "Http\\Response->detach",
+            "code": "function Http\\Response->detach(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Http\\Response->upgrade",
+            "code": "function Http\\Response->upgrade(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Http\\Response->recv",
+            "code": "function Http\\Response->recv(): Swoole\\WebSocket\\Frame; ",
+            "codeParam": "",
+            "codeReturn": ": Swoole\\WebSocket\\Frame"
+        },
+        {
+            "method": "Http\\Response->push",
+            "code": "function Http\\Response->push(mixed $data, int $opcode = 1, bool $finish = true); ",
+            "codeParam": "mixed $data, int $opcode = 1, bool $finish = true"
+        },
+        {
+            "method": "Http\\Response::create",
+            "code": "function Http\\Response::create(int $fd) : Http\\Response; ",
+            "codeParam": "int $fd",
+            "codeReturn": ": Http\\Response"
+        }
+    ],
+    "Swoole\\WebSocket\\Server": [
+        {
+            "method": "WebSocket\\Server->push",
+            "code": "function WebSocket\\Server->push(int $fd, $data, int $opcode = 1, bool $finish = true); ",
+            "codeParam": "int $fd, $data, int $opcode = 1, bool $finish = true"
+        },
+        {
+            "method": "WebSocket\\Server->exist",
+            "code": "function WebSocket\\Server->exist(int $fd); ",
+            "codeParam": "int $fd"
+        },
+        {
+            "method": "WebSocket\\Server::pack",
+            "code": "function WebSocket\\Server::pack(string $data, int $opcode = 1, bool $finish = true, bool $mask = false) : string; ",
+            "codeParam": "string $data, int $opcode = 1, bool $finish = true, bool $mask = false",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "WebSocket\\Server::unpack",
+            "code": "function WebSocket\\Server::unpack(string $data) : Swoole\\WebSocket\\Frame; ",
+            "codeParam": "string $data",
+            "codeReturn": ": Swoole\\WebSocket\\Frame"
+        },
+        {
+            "method": "WebSocket\\Server->disconnect",
+            "code": "function WebSocket\\Server->disconnect(int $fd, int $code = 1000, string $reason = \"\"); ",
+            "codeParam": "int $fd, int $code = 1000, string $reason = \"\""
+        },
+        {
+            "method": "WebSocket\\Server->isEstablished",
+            "code": "function WebSocket\\Server->isEstablished(int $fd); ",
+            "codeParam": "int $fd"
+        }
+    ],
+    "Swoole\\Redis\\Server": [
+        {
+            "method": "Redis\\Server->setHandler",
+            "code": "function Redis\\Server->setHandler(string $command, callable $callback); ",
+            "codeParam": "string $command, callable $callback"
+        },
+        {
+            "method": "Redis\\Server::format",
+            "code": "function Redis\\Server::format(int $type, mixed $value = null); ",
+            "codeParam": "int $type, mixed $value = null"
+        }
+    ],
+    "Swoole\\Process": [
+        {
+            "method": "Process::__construct",
+            "code": null
+        },
+        {
+            "method": "Process->start",
+            "code": "function Process->start() : int ",
+            "codeParam": "",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Process->name",
+            "code": "$process->name(\"php server.php: worker\"); ",
+            "codeParam": "\"php server.php: worker\""
+        },
+        {
+            "method": "Process->exec",
+            "code": "bool Process->exec(string $execfile, array $args) ",
+            "codeParam": "string $execfile, array $args"
+        },
+        {
+            "method": "Process->write",
+            "code": "function Process->write(string $data) int | bool; ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Process->read",
+            "code": "function Process->read(int $buffer_size=8192) : string | bool; ",
+            "codeParam": "int $buffer_size=8192",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Process->setTimeout",
+            "code": "function Process->setTimeout(double $timeout) ",
+            "codeParam": "double $timeout"
+        },
+        {
+            "method": "Process->setBlocking",
+            "code": "function Process->setBlocking(bool $blocking = true); ",
+            "codeParam": "bool $blocking = true"
+        },
+        {
+            "method": "Process->useQueue",
+            "code": "bool swoole_process->useQueue(int $msgkey = 0, int $mode = 2, int $capacity = 8192); ",
+            "codeParam": "int $msgkey = 0, int $mode = 2, int $capacity = 8192"
+        },
+        {
+            "method": "Process->statQueue",
+            "code": "array swoole_process->statQueue(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Process->freeQueue",
+            "code": "function swoole_process->freeQueue(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Process->exportSocket",
+            "code": "function Process::exportSocket() : Swoole\\Coroutine\\Socket; ",
+            "codeParam": "",
+            "codeReturn": ": Swoole\\Coroutine\\Socket"
+        },
+        {
+            "method": "Process->push",
+            "code": "bool Process->push(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Process->pop",
+            "code": "string Process->pop(int $maxsize = 8192); ",
+            "codeParam": "int $maxsize = 8192"
+        },
+        {
+            "method": "Process->close",
+            "code": "bool Process->close(int $which = 0); ",
+            "codeParam": "int $which = 0"
+        },
+        {
+            "method": "Process->exit",
+            "code": "int Process->exit(int $status=0); ",
+            "codeParam": "int $status=0"
+        },
+        {
+            "method": "Process::kill",
+            "code": "bool Process::kill($pid, $signo = SIGTERM); ",
+            "codeParam": "$pid, $signo = SIGTERM"
+        },
+        {
+            "method": "Process::wait",
+            "code": "array Process::wait(bool $blocking = true); $result = array('code' => 0, 'pid' => 15001, 'signal' => 15); ",
+            "codeParam": "bool $blocking = true"
+        },
+        {
+            "method": "Process::daemon",
+            "code": "//低于1.9.1的版本 bool Process::daemon(bool $nochdir = false, bool $noclose = false); //1.9.1或更高版本 bool Process::daemon(bool $nochdir = true, bool $noclose = true); ",
+            "codeParam": "bool $nochdir = false, bool $noclose = false"
+        },
+        {
+            "method": "Process::signal",
+            "code": "bool Process::signal(int $signo, callable $callback); ",
+            "codeParam": "int $signo, callable $callback"
+        },
+        {
+            "method": "Process::alarm",
+            "code": "function Process::alarm(int $interval_usec, int $type = ITIMER_REAL) : bool ",
+            "codeParam": "int $interval_usec, int $type = ITIMER_REAL",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Process::setAffinity",
+            "code": "function Process::setAffinity(array $cpu_set); ",
+            "codeParam": "array $cpu_set"
+        }
+    ],
+    "Swoole\\Process\\Pool": [
+        {
+            "method": "Process\\Pool::__construct",
+            "code": "function Process\\Pool::__construct(int $worker_num, int $ipc_type = 0, int $msgqueue_key = 0, bool $enable_coroutine = false); ",
+            "codeParam": "int $worker_num, int $ipc_type = 0, int $msgqueue_key = 0, bool $enable_coroutine = false"
+        },
+        {
+            "method": "Process\\Pool->on",
+            "code": "function Process\\Pool::on(string $event, callable $function); ",
+            "codeParam": "string $event, callable $function"
+        },
+        {
+            "method": "Process\\Pool->listen",
+            "code": "function Process\\Pool::listen(string $host, int $port = 0, int $backlog = 2048); ",
+            "codeParam": "string $host, int $port = 0, int $backlog = 2048"
+        },
+        {
+            "method": "Process\\Pool->write",
+            "code": "function Process\\Pool::write(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "Process\\Pool->start",
+            "code": "function Process\\Pool::start() : bool; ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Process\\Pool->getProcess",
+            "code": "function Process\\Pool->getProcess($worker_id) : Process; ",
+            "codeParam": "$worker_id",
+            "codeReturn": ": Process"
+        }
+    ],
+    "Swoole\\Client": [
+        {
+            "method": "swoole_client::__construct",
+            "code": "swoole_client->__construct(int $sock_type, int $is_sync = SWOOLE_SOCK_SYNC, string $key); ",
+            "codeParam": "int $sock_type, int $is_sync = SWOOLE_SOCK_SYNC, string $key"
+        },
+        {
+            "method": "swoole_client->set",
+            "code": "function swoole_client->set(array $settings); ",
+            "codeParam": "array $settings"
+        },
+        {
+            "method": "swoole_client->on",
+            "code": "int swoole_client::on(string $event, mixed $callback); ",
+            "codeParam": "string $event, mixed $callback"
+        },
+        {
+            "method": "swoole_client->connect",
+            "code": "bool $swoole_client->connect(string $host, int $port, float $timeout = 0.5, int $flag = 0) ",
+            "codeParam": "string $host, int $port, float $timeout = 0.5, int $flag = 0"
+        },
+        {
+            "method": "swoole_client->isConnected",
+            "code": "bool swoole_client->isConnected() ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->getSocket",
+            "code": "$socket = $client->getSocket(); if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {     echo 'Unable to set option on socket: '. socket_strerror(socket_last_error()) . PHP_EOL; } ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->getSockName",
+            "code": "array swoole_client->getsockname(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->getPeerName",
+            "code": "bool swoole_client->getpeername(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->getPeerCert",
+            "code": "function swoole_client->getPeerCert() ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->send",
+            "code": "int $swoole_client->send(string $data); ",
+            "codeParam": "string $data"
+        },
+        {
+            "method": "swoole_client->sendto",
+            "code": "bool swoole_client->sendto(string $ip, int $port, string $data); ",
+            "codeParam": "string $ip, int $port, string $data"
+        },
+        {
+            "method": "swoole_client->sendfile",
+            "code": "bool swoole_client->sendfile(string $filename, int $offset = 0, int $length = 0) ",
+            "codeParam": "string $filename, int $offset = 0, int $length = 0"
+        },
+        {
+            "method": "swoole_client->recv",
+            "code": "//低于1.7.22 string $swoole_client->recv(int $size = 65535, bool $waitall = 0); //1.7.22或更高 string $swoole_client->recv(int $size = 65535, int $flags = 0); ",
+            "codeParam": "int $size = 65535, bool $waitall = 0"
+        },
+        {
+            "method": "swoole_client->close",
+            "code": "bool $swoole_client->close(bool $force = false); ",
+            "codeParam": "bool $force = false"
+        },
+        {
+            "method": "swoole_client->sleep",
+            "code": "function swoole_client->sleep() ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->wakeup",
+            "code": "function swoole_client->wakeup() ",
+            "codeParam": ""
+        },
+        {
+            "method": "swoole_client->enableSSL",
+            "code": null
+        }
     ]
 }
