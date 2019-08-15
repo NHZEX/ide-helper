@@ -443,12 +443,10 @@ return [
             'set' => [
                 'name' => 'set',
                 'param' => [
-                    '[     \'max_coroutine\'' => [
-                        'name' => '[     \'max_coroutine\'',
-                        'defaultValue' => '> 4096',
-                    ],
-                    ']' => [
-                        'name' => ']',
+                    'options' => [
+                        'name' => 'options',
+                        'type' => 'array',
+                        'defaultValue' => [],
                     ],
                 ],
             ],
@@ -463,8 +461,8 @@ return [
                         'name' => 'function',
                         'type' => 'callable',
                     ],
-                    '...$args' => [
-                        'name' => '...$args',
+                    'args' => [
+                        'name' => 'args',
                     ],
                 ],
                 'result' => 'int|false',
@@ -871,14 +869,6 @@ return [
     ],
     'Swoole\\Coroutine\\Scheduler' => [
         'method' => [
-            '' => [
-                'name' => null,
-                'param' => [
-                    'function (' => [
-                        'name' => 'function (',
-                    ],
-                ],
-            ],
             'set' => [
                 'name' => 'set',
                 'param' => [
@@ -1657,8 +1647,8 @@ return [
                         'name' => 'callback',
                         'type' => 'callable',
                     ],
-                    '...$params' => [
-                        'name' => '...$params',
+                    'params' => [
+                        'name' => 'params',
                     ],
                 ],
             ],
@@ -1673,8 +1663,8 @@ return [
                         'name' => 'callback_function',
                         'type' => 'callable',
                     ],
-                    '...$params' => [
-                        'name' => '...$params',
+                    'params' => [
+                        'name' => 'params',
                     ],
                 ],
             ],
@@ -1920,7 +1910,7 @@ return [
                     'lockfile' => [
                         'name' => 'lockfile',
                         'type' => 'string',
-                        'defaultValue' => '\'\'',
+                        'defaultValue' => '',
                     ],
                 ],
             ],
@@ -2004,7 +1994,7 @@ return [
                     'value' => [
                         'name' => 'value',
                         'type' => 'string',
-                        'defaultValue' => '\'\'',
+                        'defaultValue' => '',
                     ],
                     'expire' => [
                         'name' => 'expire',
@@ -2014,12 +2004,12 @@ return [
                     'path' => [
                         'name' => 'path',
                         'type' => 'string',
-                        'defaultValue' => '\'/\'',
+                        'defaultValue' => '',
                     ],
                     'domain' => [
                         'name' => 'domain',
                         'type' => 'string',
-                        'defaultValue' => '\'\'',
+                        'defaultValue' => '',
                     ],
                     'secure' => [
                         'name' => 'secure',
@@ -2285,8 +2275,9 @@ return [
             'name' => [
                 'name' => 'name',
                 'param' => [
-                    '"php server.php: worker"' => [
-                        'name' => '"php server.php: worker"',
+                    'process_name' => [
+                        'name' => 'process_name',
+                        'type' => 'string',
                     ],
                 ],
             ],
