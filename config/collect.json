@@ -1,0 +1,361 @@
+{
+    "Swoole\\Server": [
+        {
+            "method": "Server::__construct",
+            "code": "$serv = new Server(string $host, int $port = 0, int $mode = SWOOLE_PROCESS,     int $sock_type = SWOOLE_SOCK_TCP); ",
+            "codeParam": "string $host, int $port = 0, int $mode = SWOOLE_PROCESS,     int $sock_type = SWOOLE_SOCK_TCP"
+        },
+        {
+            "method": "Server->set",
+            "code": "function Server->set(array $setting); ",
+            "codeParam": "array $setting"
+        },
+        {
+            "method": "Server->on",
+            "code": "bool Server->on(string $event, mixed $callback); ",
+            "codeParam": "string $event, mixed $callback"
+        },
+        {
+            "method": "Server->addListener",
+            "code": "function Server->addListener(string $host, int $port, $type = SWOOLE_SOCK_TCP); ",
+            "codeParam": "string $host, int $port, $type = SWOOLE_SOCK_TCP"
+        },
+        {
+            "method": "Server->addProcess",
+            "code": "bool Server->addProcess(Process $process); ",
+            "codeParam": "Process $process"
+        },
+        {
+            "method": "Server->listen",
+            "code": "bool Server->listen(string $host, int $port, int $type); ",
+            "codeParam": "string $host, int $port, int $type"
+        },
+        {
+            "method": "Server->start",
+            "code": "bool Server->start() ",
+            "codeParam": ""
+        },
+        {
+            "method": "Server->reload",
+            "code": "bool Server->reload(bool $only_reload_taskworkrer = false) ",
+            "codeParam": "bool $only_reload_taskworkrer = false"
+        },
+        {
+            "method": "Server->stop",
+            "code": "function Server->stop(int $worker_id = -1, bool $waitEvent = false); ",
+            "codeParam": "int $worker_id = -1, bool $waitEvent = false"
+        },
+        {
+            "method": "Server->shutdown",
+            "code": "void Server->shutdown(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Server->tick",
+            "code": null
+        },
+        {
+            "method": "Server->after",
+            "code": "Server->after(int $after_time_ms, mixed $callback_function); ",
+            "codeParam": "int $after_time_ms, mixed $callback_function"
+        },
+        {
+            "method": "Server->defer",
+            "code": "function Server->defer(callable $callback); ",
+            "codeParam": "callable $callback"
+        },
+        {
+            "method": "Server->clearTimer",
+            "code": null
+        },
+        {
+            "method": "Server->close",
+            "code": "bool Server->close(int $fd, bool $reset = false); ",
+            "codeParam": "int $fd, bool $reset = false"
+        },
+        {
+            "method": "Server->send",
+            "code": "bool Server->send(mixed $fd, string $data, int $serverSocket = -1); ",
+            "codeParam": "mixed $fd, string $data, int $serverSocket = -1"
+        },
+        {
+            "method": "Server->sendfile",
+            "code": "bool Server->sendfile(int $fd, string $filename, int $offset =0, int $length = 0); ",
+            "codeParam": "int $fd, string $filename, int $offset =0, int $length = 0"
+        },
+        {
+            "method": "Server->sendto",
+            "code": "bool Server->sendto(string $ip, int $port, string $data, int $server_socket = -1); ",
+            "codeParam": "string $ip, int $port, string $data, int $server_socket = -1"
+        },
+        {
+            "method": "Server->sendwait",
+            "code": "bool Server->sendwait(int $fd, string $send_data); ",
+            "codeParam": "int $fd, string $send_data"
+        },
+        {
+            "method": "Server->sendMessage",
+            "code": "bool Server->sendMessage(mixed $message, int $dst_worker_id); ",
+            "codeParam": "mixed $message, int $dst_worker_id"
+        },
+        {
+            "method": "Server->exist",
+            "code": "function Server->exist(int $fd) : bool; ",
+            "codeParam": "int $fd",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Server->pause",
+            "code": "function Server->pause(int $fd); ",
+            "codeParam": "int $fd"
+        },
+        {
+            "method": "Server->resume",
+            "code": "function Server->resume(int $fd); ",
+            "codeParam": "int $fd"
+        },
+        {
+            "method": "Server->getClientInfo",
+            "code": null
+        },
+        {
+            "method": "Server->getClientList",
+            "code": "Server::getClientList(int $start_fd = 0, int $pagesize = 10); ",
+            "codeParam": "int $start_fd = 0, int $pagesize = 10"
+        },
+        {
+            "method": "Server->bind",
+            "code": "function Server->bind(int $fd, int $uid); ",
+            "codeParam": "int $fd, int $uid"
+        },
+        {
+            "method": "Server->stats",
+            "code": "array Server->stats(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Server->task",
+            "code": "int Server::task(mixed $data, int $dst_worker_id = -1)  $task_id = $serv->task(\"some data\"); //swoole-1.8.6或更高版本 $serv->task(\"taskcallback\", -1, function (swoole_server $serv, $task_id, $data) {     echo \"Task Callback: \";     var_dump($task_id, $data); }); ",
+            "codeParam": "mixed $data, int $dst_worker_id = -1"
+        },
+        {
+            "method": "Server->taskwait",
+            "code": "function Server->taskwait(mixed $data, float $timeout = 0.5, int $dstWorkerId = -1) : string | bool ",
+            "codeParam": "mixed $data, float $timeout = 0.5, int $dstWorkerId = -1",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Server->taskWaitMulti",
+            "code": "array Server->taskWaitMulti(array $tasks, double $timeout = 0.5); ",
+            "codeParam": "array $tasks, double $timeout = 0.5"
+        },
+        {
+            "method": "Server->taskCo",
+            "code": "function Server->taskCo(array $tasks, float $timeout = 0.5) : array; ",
+            "codeParam": "array $tasks, float $timeout = 0.5",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Server->finish",
+            "code": "function Server->finish(mixed $response); ",
+            "codeParam": "mixed $response"
+        },
+        {
+            "method": "Server->heartbeat",
+            "code": "array Server::heartbeat(bool $if_close_connection = true); ",
+            "codeParam": "bool $if_close_connection = true"
+        },
+        {
+            "method": "Server->getLastError",
+            "code": "function Server->getLastError() ",
+            "codeParam": ""
+        },
+        {
+            "method": "Server->getSocket",
+            "code": "$socket = $server->getSocket(); if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {     echo 'Unable to set option on socket: '. socket_strerror(socket_last_error()) . PHP_EOL; } ",
+            "codeParam": ""
+        },
+        {
+            "method": "Server->protect",
+            "code": "function Server->protect(int $fd, bool $value = 1); ",
+            "codeParam": "int $fd, bool $value = 1"
+        },
+        {
+            "method": "Server->confirm",
+            "code": "function Server->confirm(int $fd); ",
+            "codeParam": "int $fd"
+        }
+    ],
+    "Swoole\\Coroutine": [
+        {
+            "method": "Coroutine::set",
+            "code": "Swoole\\Coroutine::set([     'max_coroutine' => 4096, ]); ",
+            "codeParam": "[     'max_coroutine' => 4096, ]"
+        },
+        {
+            "method": "Coroutine::stats",
+            "code": "function \\Swoole\\Coroutine::stats() : array ",
+            "codeParam": "",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Coroutine::create",
+            "code": "function Swoole\\Coroutine::create(callable $function, ...$args) : int|false; function go(callable $function, ...$args) : int|false; // 短名API ",
+            "codeParam": "callable $function, ...$args",
+            "codeReturn": ": int|false"
+        },
+        {
+            "method": "Coroutine::exist",
+            "code": null
+        },
+        {
+            "method": "Coroutine::getCid",
+            "code": "",
+            "codeParam": "",
+            "codeReturn": ""
+        },
+        {
+            "method": "Coroutine::getPcid",
+            "code": null
+        },
+        {
+            "method": "Coroutine::getContext",
+            "code": "function Coroutine::getContext() : Coroutine\\Context ",
+            "codeParam": "",
+            "codeReturn": ": Coroutine\\Context"
+        },
+        {
+            "method": "Coroutine::defer",
+            "code": "go(function () {     $info = Context::get('info', Co::getuid()); // get context of this coroutine     defer(function () {         Context::delete('info', Co::getuid()); // delete     });     throw new Exception('something wrong');     echo \"never here\\n\"; }); ",
+            "codeParam": "function ("
+        },
+        {
+            "method": "Coroutine::list",
+            "code": "function Coroutine::list() : Coroutine\\Iterator function Coroutine::listCoroutines() : Coroitine\\Iterator ",
+            "codeParam": "",
+            "codeReturn": ": Coroutine\\Iterator"
+        },
+        {
+            "method": "Coroutine::getBackTrace",
+            "code": "function Coroutine::getBackTrace(int $cid=0, int $options=DEBUG_BACKTRACE_PROVIDE_OBJECT, int $limit=0) : array; ",
+            "codeParam": "int $cid=0, int $options=DEBUG_BACKTRACE_PROVIDE_OBJECT, int $limit=0",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Coroutine::yield",
+            "code": "function Coroutine::yield(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine::resume",
+            "code": "function Swoole\\Coroutine::resume(int $coroutineId); ",
+            "codeParam": "int $coroutineId"
+        },
+        {
+            "method": "Coroutine::fread",
+            "code": "function Coroutine::fread(resource $handle, int $length = 0); ",
+            "codeParam": "resource $handle, int $length = 0"
+        },
+        {
+            "method": "Coroutine::fgets",
+            "code": "function Coroutine::fgets(resource $handle); ",
+            "codeParam": "resource $handle"
+        },
+        {
+            "method": "Coroutine::fwrite",
+            "code": "function Coroutine::fwrite(resource $handle, string $data, int $length = 0); ",
+            "codeParam": "resource $handle, string $data, int $length = 0"
+        },
+        {
+            "method": "Coroutine::sleep",
+            "code": "function Coroutine::sleep(float $seconds); ",
+            "codeParam": "float $seconds"
+        },
+        {
+            "method": "Coroutine::gethostbyname",
+            "code": "function Coroutine::gethostbyname(string $domain, int $family = AF_INET, double $timeout): string | bool ",
+            "codeParam": "string $domain, int $family = AF_INET, double $timeout",
+            "codeReturn": ": string"
+        },
+        {
+            "method": "Coroutine::getaddrinfo",
+            "code": "function Coroutine::getaddrinfo(string $domain, int $family = AF_INET, int $socktype = SOCK_STREAM,     int $protocol = IPPROTO_TCP, string $service = null): array | bool ",
+            "codeParam": "string $domain, int $family = AF_INET, int $socktype = SOCK_STREAM,     int $protocol = IPPROTO_TCP, string $service = null",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Coroutine::dnsLookup",
+            "code": "function Coroutine::dnsLookup(string $domain, double $timeout = 5); ",
+            "codeParam": "string $domain, double $timeout = 5"
+        },
+        {
+            "method": "Coroutine::exec",
+            "code": "function Coroutine::exec(string $cmd) : array; ",
+            "codeParam": "string $cmd",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Coroutine::readFile",
+            "code": "function Coroutine::readFile(string $filename); ",
+            "codeParam": "string $filename"
+        },
+        {
+            "method": "Coroutine::writeFile",
+            "code": "function Coroutine::writeFile(string $filename, string $fileContent, int $flags); ",
+            "codeParam": "string $filename, string $fileContent, int $flags"
+        },
+        {
+            "method": "Coroutine::statvfs",
+            "code": "function Coroutine::statvfs(string $path); ",
+            "codeParam": "string $path"
+        }
+    ],
+    "Swoole\\Coroutine\\Channel": [
+        {
+            "method": "Coroutine\\Channel->__construct",
+            "code": "Coroutine\\Channel->__construct(int $capacity = 1) ",
+            "codeParam": "int $capacity = 1"
+        },
+        {
+            "method": "Coroutine\\Channel->push",
+            "code": "function Coroutine\\Channel->push(mixed $data, float $timeout = -1) : bool; ",
+            "codeParam": "mixed $data, float $timeout = -1",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Channel->pop",
+            "code": "function Coroutine\\Channel->pop(float $timeout = 0) : mixed; ",
+            "codeParam": "float $timeout = 0",
+            "codeReturn": ": mixed"
+        },
+        {
+            "method": "Coroutine\\Channel->stats",
+            "code": "function Coroutine\\Channel->stats() : array; ",
+            "codeParam": "",
+            "codeReturn": ": array"
+        },
+        {
+            "method": "Coroutine\\Channel->close",
+            "code": "funtion Coroutine\\Channel->close(); ",
+            "codeParam": ""
+        },
+        {
+            "method": "Coroutine\\Channel->length",
+            "code": "public function length(): int ",
+            "codeParam": "",
+            "codeReturn": ": int"
+        },
+        {
+            "method": "Coroutine\\Channel->isEmpty",
+            "code": "public function isEmpty(): bool ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        },
+        {
+            "method": "Coroutine\\Channel->isFull",
+            "code": "public function isFull(): bool ",
+            "codeParam": "",
+            "codeReturn": ": bool"
+        }
+    ]
+}

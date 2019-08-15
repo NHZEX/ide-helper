@@ -11,8 +11,12 @@ use Swoole\Coroutine\Channel;
 use Swoole\IDEHelper\Rules\NamespaceRule;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Generator\DocBlock\Tag\ReturnTag;
+use Zend\Code\Generator\DocBlock\Tag\VarTag;
 use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Code\Generator\PropertyGenerator;
+use Zend\Code\Generator\ValueGenerator;
 use Zend\Code\Reflection\ClassReflection;
+use Zend\Code\Reflection\DocBlockReflection;
 
 /**
  * Class AbstractStubGenerator
@@ -68,6 +72,14 @@ abstract class AbstractStubGenerator
         '__destruct'  => null,
     ];
 
+    protected $config = [];
+
+    protected $typeMapping = [
+        'Process' => '\Swoole\Process',
+        'Coroutine\Iterator' => '\Swoole\Coroutine\Iterator',
+        'Coroutine\Context' => '\Swoole\Coroutine\Iterator',
+    ];
+
     /**
      * AbstractStubGenerator constructor.
      *
@@ -86,6 +98,8 @@ abstract class AbstractStubGenerator
         $this->dirOutput = dirname(__DIR__) . '/output/' . $this->extension;
         $this->dirConfig = dirname(__DIR__) . '/config';
         $this->rf_ext    = new ReflectionExtension($this->extension);
+
+        $this->config = (require $this->dirConfig . '/class.php') ?? [];
     }
 
     /**
@@ -276,9 +290,64 @@ abstract class AbstractStubGenerator
     {
         (new NamespaceRule($this))->validate($classname);
 
-        $class = ClassGenerator::fromReflection(new ClassReflection($ref->getName()));
+        $classRef = new ClassReflection($ref->getName());
+        $class = ClassGenerator::fromReflection($classRef);
+        foreach ($class->getProperties() as $property) {
+            if ($property->getVisibility() === PropertyGenerator::VISIBILITY_PRIVATE) {
+                $class->removeProperty($property->getName());
+                continue;
+            }
+//            $property->setDocBlock(DocBlockGenerator::fromArray(
+//                [
+//                    'tags' => [
+//                        new VarTag(null, [])
+//                    ]
+//                ]
+//            ));
+        }
         foreach ($class->getMethods() as $method) {
-            if ((null === $method->getReturnType()) && !array_key_exists($method->getName(), self::IGNORED_METHODS)) {
+            // $methodRef = $classRef->getMethod($method->getName());
+            $methodConf = $this->config[$classname]['method'][$method->getName()] ?? [];
+            foreach ($method->getParameters() as $parameter) {
+                if (empty($paramConf = $methodConf['param'][$parameter->getName()] ?? [])) {
+                    continue;
+                }
+                if (!empty($paramConf['type'])) {
+                    if ($paramConf['type'] !== 'mixed' && $paramConf['type'] !== 'resource') {
+                        if (isset($this->typeMapping[$paramConf['type']])) {
+                            $paramConf['type'] = $this->typeMapping[$paramConf['type']];
+                        }
+                        $parameter->setType($paramConf['type']);
+                    }
+                }
+                if (!empty($paramConf['defaultValue'])) {
+                    $vvalue = new ValueGenerator($paramConf['defaultValue']);
+                    if (is_string($paramConf['defaultValue']) && defined($paramConf['defaultValue'])) {
+                        $vvalue->setType(ValueGenerator::TYPE_CONSTANT);
+                    }
+                    $parameter->setDefaultValue($vvalue);
+                }
+            }
+            if (null === $method->getReturnType() && !empty($methodConf['result'])) {
+                if (isset($this->typeMapping[$methodConf['result']])) {
+                    $methodConf['result'] = $this->typeMapping[$methodConf['result']];
+                }
+                $method->setDocBlock(
+                    DocBlockGenerator::fromArray(
+                        [
+                            'shortDescription' => null,
+                            'longDescription'  => null,
+                            'tags'             => [
+                                new ReturnTag(
+                                    [
+                                        'datatype' => $methodConf['result'],
+                                    ]
+                                ),
+                            ],
+                        ]
+                    )
+                );
+            } elseif (null === $method->getReturnType() && !array_key_exists($method->getName(), self::IGNORED_METHODS)) {
                 $method->setDocBlock(
                     DocBlockGenerator::fromArray(
                         [
